@@ -1,0 +1,13 @@
+{
+  "uninterrupted_steps": 20,
+  "split_steps": [
+    10,
+    10
+  ],
+  "checks": {
+    "model": true,
+    "ema": true,
+    "sampler_rng": true,
+    "optimizer": true
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "tag": "v0.2.0",
+  "files": [
+    {
+      "asset": "mnist28-demo.tar.gz",
+      "path": "flow_matching_lab/improved/unet_seed2026/checkpoint.pt",
+      "bytes": 3897700,
+      "sha256": "ead5af119d02811e0fecea03d8387e3d8200a84ee4bcd282204ff86212d048b3"
+    },
+    {
+      "asset": "mnist14-experiments.tar.gz",
+      "path": "flow_matching_lab/results/classifier_14.pt",
+      "bytes": 341789,
+      "sha256": "9544208b3791b0283e34901512a34c581f25ecec45e1d35f51363ab193dad273"
+    },
+    {
+      "asset": "mnist14-experiments.tar.gz",
+      "path": "flow_matching_lab/results/seed2026/checkpoint.pt",
+      "bytes": 8537735,
+      "sha256": "345e67fe2b4d6134f1a5685a6c0517c9d9c04f7f4c4c93f962fd8ea018ab22a3"
+    },
+    {
+      "asset": "mnist14-experiments.tar.gz",
+      "path": "flow_matching_lab/results/seed2026/samples.npz",
+      "bytes": 13942140,
+      "sha256": "1e7dfd137b51b3b544abad59e2ff17da7d846fb6f50d0ec7f5be147156e12ff0"
+    },
+    {
+      "asset": "mnist14-experiments.tar.gz",
+      "path": "flow_matching_lab/results/seed2027/checkpoint.pt",
+      "bytes": 8537735,
+      "sha256": "f81e0245223c8a69b93cc3bc976cf556ebfeaae98cb571f4596821bc09ca2094"
+    },
+    {
+      "asset": "mnist14-experiments.tar.gz",
+      "path": "flow_matching_lab/results/seed2027/samples.npz",
+      "bytes": 13943494,
+      "sha256": "f1c68e194ca759ffcf41136f888b7ddd6af29f66a14a06e3b829b9c4b893ca86"
+    },
+    {
+      "asset": "mnist14-experiments.tar.gz",
+      "path": "flow_matching_lab/results/seed2028/checkpoint.pt",
+      "bytes": 8537735,
+      "sha256": "6abf49238475aa620281a744f64514e5566a3ffa9f4b77df2b4b2abe496ebfbc"
+    },
+    {
+      "asset": "mnist14-experiments.tar.gz",
+      "path": "flow_matching_lab/results/seed2028/samples.npz",
+      "bytes": 13949117,
+      "sha256": "302795a0fc8a70730cda0126a3e48126b237ddf7a177274994550243718aa283"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/classifier_28.pt",
+      "bytes": 831521,
+      "sha256": "9851114f54777a30613ccaef5bf92011e90fcb05663c7e91833cafb8787e9097"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/mlp_seed2026/checkpoint.pt",
+      "bytes": 20204316,
+      "sha256": "b4dbb34bb34618581e3062038f04462da6f230a066d4726cea21e7031301e71c"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/mlp_seed2026/evaluation_samples.npz",
+      "bytes": 23797715,
+      "sha256": "9f90da6330f4f73ecca2681eba02a50a7f64dd4ba75fc8ce15d5ccb82be7dece"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/mlp_seed2027/checkpoint.pt",
+      "bytes": 20204316,
+      "sha256": "39fa13777f60ee28f855e50f46b66051498f748a5c5fd4b2f8dfbb3a9c09b6e8"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/mlp_seed2027/evaluation_samples.npz",
+      "bytes": 23794003,
+      "sha256": "691befd3ae58206676088b3c0ef1ce9d541608779f14eaa91952d3263bbb3232"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/mlp_wide_seed2026/checkpoint.pt",
+      "bytes": 154843932,
+      "sha256": "cc8a1195388b86845d1b9c609fcf01dc5fe32465f2aba4d426237cc713471b07"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/mlp_wide_seed2026/evaluation_samples.npz",
+      "bytes": 23299519,
+      "sha256": "7822ece9160f67e4432436cb33f9453c62530b3b098bdb867c7c16954c7b663c"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/unet_seed2026/checkpoint.pt",
+      "bytes": 3897700,
+      "sha256": "ead5af119d02811e0fecea03d8387e3d8200a84ee4bcd282204ff86212d048b3"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/unet_seed2026/evaluation_samples.npz",
+      "bytes": 22189808,
+      "sha256": "1e9a7f52e3076263fb93a383c7e2e03dccf7fe57e934c76fc28c666a9139f9c6"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/unet_seed2027/checkpoint.pt",
+      "bytes": 3897700,
+      "sha256": "da0457ab2b882bd7c7f9abcc3d5027554f7340845585e2b6a710ca5957ed93aa"
+    },
+    {
+      "asset": "mnist28-experiments.tar.gz",
+      "path": "flow_matching_lab/improved/unet_seed2027/evaluation_samples.npz",
+      "bytes": 22222345,
+      "sha256": "02348edd03796c043d133d6aa2fcba88b106c2e34983553295c1c41685e60be8"
+    }
+  ]
+}

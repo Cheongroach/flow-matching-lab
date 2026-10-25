@@ -1,0 +1,16 @@
+{
+  "device": "cpu",
+  "threads": 2,
+  "uninterrupted_steps": 40,
+  "resumed_steps": [
+    20,
+    20
+  ],
+  "checks": {
+    "model": true,
+    "ema": true,
+    "rng_equal": true,
+    "steps_equal": true,
+    "optimizer_tensors_equal": true
+  }
+}

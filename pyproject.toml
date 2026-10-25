@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flow-matching-lab"
+version = "0.2.0"
+description = "Reproducible MNIST Flow Matching with an editable conditioned U-Net demo"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Cheongroach"}]
+dependencies = ["torch>=2.1", "numpy>=1.24", "matplotlib>=3.7", "pillow>=9"]
+
+[project.urls]
+Repository = "https://github.com/Cheongroach/flow-matching-lab"
+
+[tool.setuptools.packages.find]
+include = ["flow_matching_lab"]
+
+[tool.setuptools.package-data]
+flow_matching_lab = ["editor.html", "improved/examples.json"]
+
+[tool.ruff.lint]
+select = ["E9", "F"]

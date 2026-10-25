@@ -1,0 +1,33 @@
+{
+  "analytical_checks": 5,
+  "failures": 0,
+  "errors": 0,
+  "official_flow_matching_1_0_10_parity": [
+    {
+      "shape": [
+        16,
+        2
+      ],
+      "path_max_error": 0,
+      "velocity_max_error": 0
+    },
+    {
+      "shape": [
+        16,
+        196
+      ],
+      "path_max_error": 0,
+      "velocity_max_error": 0
+    },
+    {
+      "shape": [
+        16,
+        1,
+        14,
+        14
+      ],
+      "path_max_error": 0,
+      "velocity_max_error": 0
+    }
+  ]
+}

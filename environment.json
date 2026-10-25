@@ -1,0 +1,9 @@
+{
+  "python": "3.11.2",
+  "torch": "2.9.1",
+  "numpy": "2.3.5",
+  "matplotlib": "3.11.1",
+  "pillow": "11.3.0",
+  "device": "CPU",
+  "platform": "Linux-5.15.152.bsk.12-amd64-x86_64-with-glibc2.36"
+}

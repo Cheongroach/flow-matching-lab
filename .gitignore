@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+*.pt
+*.npz
+*.tar.gz
+flow_matching_lab/draw_outputs/
+flow_matching_lab/play_outputs/
+flow_matching_lab/play_examples/

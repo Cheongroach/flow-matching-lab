@@ -1,0 +1,493 @@
+{
+  "training_seed": 2028,
+  "evaluation_seed": 123456,
+  "samples": 1000,
+  "classifier": {
+    "seed": 424242,
+    "steps": 1800,
+    "train_samples": 55000,
+    "test_samples": 10000,
+    "test_correct": 9702,
+    "test_accuracy": 0.9702,
+    "training_seconds": 2.6063647577539086
+  },
+  "metrics": [
+    {
+      "name": "gaussian_noise",
+      "nfe": 0,
+      "network_evaluations_per_sample": 0,
+      "class_accuracy": 0.124,
+      "class_accuracy_95ci": [
+        0.10499997337198466,
+        0.14587774900915282
+      ],
+      "per_class_accuracy": [
+        0.03999999910593033,
+        0.07999999821186066,
+        0.3499999940395355,
+        0.20000000298023224,
+        0.019999999552965164,
+        0.18000000715255737,
+        0.03999999910593033,
+        0.3100000023841858,
+        0.0,
+        0.019999999552965164
+      ],
+      "sliced_w1_raw": 0.729417085647583,
+      "out_of_range_fraction": 0.3180510103702545,
+      "mean_clip_displacement": 0.16733743250370026,
+      "batch_sampling_seconds": null
+    },
+    {
+      "name": "real_train_reference",
+      "nfe": 0,
+      "network_evaluations_per_sample": 0,
+      "class_accuracy": 0.967,
+      "class_accuracy_95ci": [
+        0.9540187355329184,
+        0.9764070720415732
+      ],
+      "per_class_accuracy": [
+        0.9800000190734863,
+        1.0,
+        0.9599999785423279,
+        0.9599999785423279,
+        0.9300000071525574,
+        0.9700000286102295,
+        0.9900000095367432,
+        0.9800000190734863,
+        0.949999988079071,
+        0.949999988079071
+      ],
+      "sliced_w1_raw": 0.02779831737279892,
+      "out_of_range_fraction": 0.0,
+      "mean_clip_displacement": 0.0,
+      "batch_sampling_seconds": null
+    },
+    {
+      "name": "untrained_euler_32",
+      "nfe": 32,
+      "network_evaluations_per_sample": 32,
+      "class_accuracy": 0.125,
+      "class_accuracy_95ci": [
+        0.10592623063520473,
+        0.14694383822896162
+      ],
+      "per_class_accuracy": [
+        0.03999999910593033,
+        0.07999999821186066,
+        0.36000001430511475,
+        0.2199999988079071,
+        0.019999999552965164,
+        0.18000000715255737,
+        0.029999999329447746,
+        0.30000001192092896,
+        0.0,
+        0.019999999552965164
+      ],
+      "sliced_w1_raw": 0.7307034730911255,
+      "out_of_range_fraction": 0.31842347979545593,
+      "mean_clip_displacement": 0.16765575110912323,
+      "batch_sampling_seconds": null
+    },
+    {
+      "name": "euler_nfe1_cfg1",
+      "nfe": 1,
+      "network_evaluations_per_sample": 1,
+      "class_accuracy": 0.985,
+      "class_accuracy_95ci": [
+        0.9753990230730932,
+        0.9908890211959184
+      ],
+      "per_class_accuracy": [
+        1.0,
+        0.9399999976158142,
+        0.9900000095367432,
+        0.9800000190734863,
+        1.0,
+        0.9700000286102295,
+        1.0,
+        1.0,
+        1.0,
+        0.9700000286102295
+      ],
+      "sliced_w1_raw": 0.1364704668521881,
+      "out_of_range_fraction": 0.33666837215423584,
+      "mean_clip_displacement": 0.04237918555736542,
+      "batch_sampling_seconds": 0.003269539214670658
+    },
+    {
+      "name": "euler_nfe2_cfg1",
+      "nfe": 2,
+      "network_evaluations_per_sample": 2,
+      "class_accuracy": 0.95,
+      "class_accuracy_95ci": [
+        0.9346861797557492,
+        0.9618697376072513
+      ],
+      "per_class_accuracy": [
+        1.0,
+        0.9800000190734863,
+        0.9100000262260437,
+        0.800000011920929,
+        1.0,
+        0.8700000047683716,
+        1.0,
+        0.9599999785423279,
+        0.9900000095367432,
+        0.9900000095367432
+      ],
+      "sliced_w1_raw": 0.11435756832361221,
+      "out_of_range_fraction": 0.3143622577190399,
+      "mean_clip_displacement": 0.014946416020393372,
+      "batch_sampling_seconds": 0.006911595351994038
+    },
+    {
+      "name": "euler_nfe4_cfg1",
+      "nfe": 4,
+      "network_evaluations_per_sample": 4,
+      "class_accuracy": 0.905,
+      "class_accuracy_95ci": [
+        0.8852455602057479,
+        0.9216547654209526
+      ],
+      "per_class_accuracy": [
+        0.9900000095367432,
+        0.9800000190734863,
+        0.8299999833106995,
+        0.6600000262260437,
+        1.0,
+        0.800000011920929,
+        1.0,
+        0.9200000166893005,
+        0.9700000286102295,
+        0.8999999761581421
+      ],
+      "sliced_w1_raw": 0.08006200194358826,
+      "out_of_range_fraction": 0.3471836745738983,
+      "mean_clip_displacement": 0.01875675842165947,
+      "batch_sampling_seconds": 0.012272940017282963
+    },
+    {
+      "name": "euler_nfe8_cfg1",
+      "nfe": 8,
+      "network_evaluations_per_sample": 8,
+      "class_accuracy": 0.88,
+      "class_accuracy_95ci": [
+        0.8583909241522872,
+        0.8987007393986909
+      ],
+      "per_class_accuracy": [
+        0.949999988079071,
+        0.9700000286102295,
+        0.7799999713897705,
+        0.6000000238418579,
+        0.9900000095367432,
+        0.800000011920929,
+        1.0,
+        0.8899999856948853,
+        0.9599999785423279,
+        0.8600000143051147
+      ],
+      "sliced_w1_raw": 0.05960230156779289,
+      "out_of_range_fraction": 0.34801530838012695,
+      "mean_clip_displacement": 0.02232126146554947,
+      "batch_sampling_seconds": 0.024313852190971375
+    },
+    {
+      "name": "euler_nfe16_cfg1",
+      "nfe": 16,
+      "network_evaluations_per_sample": 16,
+      "class_accuracy": 0.862,
+      "class_accuracy_95ci": [
+        0.8392340001264323,
+        0.8819954267300257
+      ],
+      "per_class_accuracy": [
+        0.9200000166893005,
+        0.949999988079071,
+        0.75,
+        0.5799999833106995,
+        0.9700000286102295,
+        0.800000011920929,
+        1.0,
+        0.8700000047683716,
+        0.9300000071525574,
+        0.8500000238418579
+      ],
+      "sliced_w1_raw": 0.04719472676515579,
+      "out_of_range_fraction": 0.36682143807411194,
+      "mean_clip_displacement": 0.028376668691635132,
+      "batch_sampling_seconds": 0.046674931421875954
+    },
+    {
+      "name": "euler_nfe32_cfg1",
+      "nfe": 32,
+      "network_evaluations_per_sample": 32,
+      "class_accuracy": 0.852,
+      "class_accuracy_95ci": [
+        0.828644950702635,
+        0.8726610113235342
+      ],
+      "per_class_accuracy": [
+        0.8999999761581421,
+        0.9399999976158142,
+        0.75,
+        0.5799999833106995,
+        0.949999988079071,
+        0.7799999713897705,
+        0.9800000190734863,
+        0.8700000047683716,
+        0.9200000166893005,
+        0.8500000238418579
+      ],
+      "sliced_w1_raw": 0.04090069979429245,
+      "out_of_range_fraction": 0.373035728931427,
+      "mean_clip_displacement": 0.03220771998167038,
+      "batch_sampling_seconds": 0.09424319118261337
+    },
+    {
+      "name": "euler_nfe64_cfg1",
+      "nfe": 64,
+      "network_evaluations_per_sample": 64,
+      "class_accuracy": 0.85,
+      "class_accuracy_95ci": [
+        0.8265313415731996,
+        0.8707899274869118
+      ],
+      "per_class_accuracy": [
+        0.8999999761581421,
+        0.9399999976158142,
+        0.75,
+        0.5699999928474426,
+        0.949999988079071,
+        0.7799999713897705,
+        0.9700000286102295,
+        0.8700000047683716,
+        0.9200000166893005,
+        0.8500000238418579
+      ],
+      "sliced_w1_raw": 0.038251716643571854,
+      "out_of_range_fraction": 0.37739795446395874,
+      "mean_clip_displacement": 0.03434242680668831,
+      "batch_sampling_seconds": 0.18366914335638285
+    },
+    {
+      "name": "heun_nfe2_cfg1",
+      "nfe": 2,
+      "network_evaluations_per_sample": 2,
+      "class_accuracy": 0.835,
+      "class_accuracy_95ci": [
+        0.8107207516702334,
+        0.8567153201444447
+      ],
+      "per_class_accuracy": [
+        0.9700000286102295,
+        0.8799999952316284,
+        0.8199999928474426,
+        0.6299999952316284,
+        0.9399999976158142,
+        0.7900000214576721,
+        0.9200000166893005,
+        0.9399999976158142,
+        0.8500000238418579,
+        0.6100000143051147
+      ],
+      "sliced_w1_raw": 0.1779496818780899,
+      "out_of_range_fraction": 0.38073980808258057,
+      "mean_clip_displacement": 0.17876893281936646,
+      "batch_sampling_seconds": 0.006796599365770817
+    },
+    {
+      "name": "heun_nfe4_cfg1",
+      "nfe": 4,
+      "network_evaluations_per_sample": 4,
+      "class_accuracy": 0.86,
+      "class_accuracy_95ci": [
+        0.8371133085163773,
+        0.8801314253740229
+      ],
+      "per_class_accuracy": [
+        0.9300000071525574,
+        0.9300000071525574,
+        0.7799999713897705,
+        0.5899999737739563,
+        0.9700000286102295,
+        0.8199999928474426,
+        0.9599999785423279,
+        0.8999999761581421,
+        0.9100000262260437,
+        0.8100000023841858
+      ],
+      "sliced_w1_raw": 0.0369621142745018,
+      "out_of_range_fraction": 0.3790765404701233,
+      "mean_clip_displacement": 0.07854816317558289,
+      "batch_sampling_seconds": 0.011783779598772526
+    },
+    {
+      "name": "heun_nfe8_cfg1",
+      "nfe": 8,
+      "network_evaluations_per_sample": 8,
+      "class_accuracy": 0.852,
+      "class_accuracy_95ci": [
+        0.828644950702635,
+        0.8726610113235342
+      ],
+      "per_class_accuracy": [
+        0.8999999761581421,
+        0.9599999785423279,
+        0.7599999904632568,
+        0.5699999928474426,
+        0.949999988079071,
+        0.7900000214576721,
+        0.9800000190734863,
+        0.8899999856948853,
+        0.8999999761581421,
+        0.8199999928474426
+      ],
+      "sliced_w1_raw": 0.030974160879850388,
+      "out_of_range_fraction": 0.37651529908180237,
+      "mean_clip_displacement": 0.05171439051628113,
+      "batch_sampling_seconds": 0.02378639578819275
+    },
+    {
+      "name": "heun_nfe16_cfg1",
+      "nfe": 16,
+      "network_evaluations_per_sample": 16,
+      "class_accuracy": 0.85,
+      "class_accuracy_95ci": [
+        0.8265313415731996,
+        0.8707899274869118
+      ],
+      "per_class_accuracy": [
+        0.8999999761581421,
+        0.949999988079071,
+        0.75,
+        0.5600000023841858,
+        0.949999988079071,
+        0.7900000214576721,
+        0.9700000286102295,
+        0.8799999952316284,
+        0.9100000262260437,
+        0.8399999737739563
+      ],
+      "sliced_w1_raw": 0.034636180847883224,
+      "out_of_range_fraction": 0.37333163619041443,
+      "mean_clip_displacement": 0.040130529552698135,
+      "batch_sampling_seconds": 0.046971213072538376
+    },
+    {
+      "name": "heun_nfe32_cfg1",
+      "nfe": 32,
+      "network_evaluations_per_sample": 32,
+      "class_accuracy": 0.845,
+      "class_accuracy_95ci": [
+        0.821253161260159,
+        0.866106375384808
+      ],
+      "per_class_accuracy": [
+        0.8899999856948853,
+        0.9399999976158142,
+        0.75,
+        0.550000011920929,
+        0.9399999976158142,
+        0.7799999713897705,
+        0.9700000286102295,
+        0.8700000047683716,
+        0.9100000262260437,
+        0.8500000238418579
+      ],
+      "sliced_w1_raw": 0.03561592102050781,
+      "out_of_range_fraction": 0.37613776326179504,
+      "mean_clip_displacement": 0.03710109740495682,
+      "batch_sampling_seconds": 0.094094667583704
+    },
+    {
+      "name": "heun_nfe64_cfg1",
+      "nfe": 64,
+      "network_evaluations_per_sample": 64,
+      "class_accuracy": 0.844,
+      "class_accuracy_95ci": [
+        0.8201985055513945,
+        0.8651686846105435
+      ],
+      "per_class_accuracy": [
+        0.8899999856948853,
+        0.9300000071525574,
+        0.75,
+        0.550000011920929,
+        0.9399999976158142,
+        0.7799999713897705,
+        0.9700000286102295,
+        0.8700000047683716,
+        0.9100000262260437,
+        0.8500000238418579
+      ],
+      "sliced_w1_raw": 0.03559144586324692,
+      "out_of_range_fraction": 0.3767857253551483,
+      "mean_clip_displacement": 0.0364130400121212,
+      "batch_sampling_seconds": 0.18564226292073727
+    },
+    {
+      "name": "euler_nfe32_cfg0",
+      "nfe": 32,
+      "network_evaluations_per_sample": 64,
+      "class_accuracy": 0.108,
+      "class_accuracy_95ci": [
+        0.09024119856255189,
+        0.12875898009012332
+      ],
+      "per_class_accuracy": [
+        0.03999999910593033,
+        0.05000000074505806,
+        0.10000000149011612,
+        0.029999999329447746,
+        0.07999999821186066,
+        0.1599999964237213,
+        0.09000000357627869,
+        0.07999999821186066,
+        0.3100000023841858,
+        0.14000000059604645
+      ],
+      "sliced_w1_raw": 0.06212548539042473,
+      "out_of_range_fraction": 0.3614540696144104,
+      "mean_clip_displacement": 0.028745874762535095,
+      "batch_sampling_seconds": null
+    },
+    {
+      "name": "euler_nfe32_cfg2",
+      "nfe": 32,
+      "network_evaluations_per_sample": 64,
+      "class_accuracy": 0.991,
+      "class_accuracy_95ci": [
+        0.982984183834662,
+        0.9952579393325229
+      ],
+      "per_class_accuracy": [
+        1.0,
+        1.0,
+        0.9800000190734863,
+        0.9800000190734863,
+        1.0,
+        0.9900000095367432,
+        1.0,
+        0.9900000095367432,
+        1.0,
+        0.9700000286102295
+      ],
+      "sliced_w1_raw": 0.06184978783130646,
+      "out_of_range_fraction": 0.41083163022994995,
+      "mean_clip_displacement": 0.048382364213466644,
+      "batch_sampling_seconds": null
+    }
+  ],
+  "projection_directions": 128,
+  "evaluation_device": "cpu",
+  "evaluation_threads": 4,
+  "metric_notes": {
+    "class_accuracy": "Classifier agreement with requested label on clipped display pixels; not human image quality.",
+    "sliced_w1_raw": "Mean empirical 1D W1 over 128 fixed unit directions in raw pixel coordinates; not FID.",
+    "nfe": "Guided RHS evaluations; CFG 0 or 2 doubles network work per sample with concatenated batches.",
+    "timing": "One CPU batch after a small warmup; diagnostic only, not a controlled throughput benchmark."
+  }
+}

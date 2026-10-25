@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flow Matching · 笔画补全实验台</title>
+<style>
+:root{color-scheme:dark;--bg:#11161b;--panel:#1c252d;--line:#3c4a55;--text:#e9eff3;--muted:#aebdc8;--brand:#65e5b6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,sans-serif}
+main{max-width:1060px;margin:auto;padding:28px}h1{font-size:27px;margin:0 0 8px}h2{font-size:18px;margin:0}
+p{color:var(--muted)}.bar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:20px 0}
+button,select,input{font:inherit}button,select{background:#293946;color:var(--text);border:1px solid var(--line);padding:8px 12px;border-radius:8px}
+button{cursor:pointer}button:hover{border-color:var(--brand)}button.active{outline:2px solid var(--brand)}
+label{display:flex;gap:8px;align-items:center}input[type=range]{accent-color:var(--brand);width:100px}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:24px}.panel{border:1px solid var(--line);background:var(--panel);padding:20px;border-radius:12px}
+canvas{display:block;width:100%;aspect-ratio:1;image-rendering:pixelated;touch-action:none;background:#000;border:1px solid var(--line);margin:12px 0}
+.hint{font-size:14px;color:var(--muted)}#status{color:var(--brand);min-height:30px}#file{display:none}
+@media(max-width:640px){.panels{grid-template-columns:1fr}main{padding:16px}}
+</style>
+</head>
+<body><main>
+<h1>修改笔画，让模型补全剩下的部分</h1>
+<p id="intro">白色笔画和黑色背景是已知区域，灰色区域交给模型生成。固定随机种子，更容易看清输入变化的影响。</p>
+<div class="bar">
+<label>模式 <select id="mode"><option value="completion">笔画补全</option><option value="noise">噪声编辑</option></select></label>
+<label>目标数字 <select id="digit"></select></label>
+<label>步数 <select id="steps"><option>8</option><option selected>32</option><option>64</option></select></label>
+<label>CFG <input id="cfg" type="range" min="0" max="3" step=".1" value="1"><output id="cfgv">1</output></label>
+<label>种子 <input id="seed" type="number" min="0" max="2147483647" value="42" style="width:90px"></label>
+</div>
+<div class="panels">
+<section class="panel"><h2 id="input-title">输入 · 已知笔画与生成区域</h2>
+<canvas id="input" width="336" height="336" aria-label="编辑笔画或噪声"></canvas>
+<div class="bar"><button id="light" class="active">白笔</button><button id="dark">黑笔</button><button id="erase">交给模型</button>
+<label>笔刷 <input id="radius" type="range" min=".5" max="3" step=".5" value="1"></label></div>
+<div class="bar"><button id="example">载入半个真实数字</button><button id="upload">上传自己的图片</button><input id="file" type="file" accept="image/*">
+<button id="clear">清空</button><button id="reset">撤回到初始输入</button></div>
+<div class="hint" id="coverage">已知区域：0%</div></section>
+<section class="panel"><h2>输出 · 完成的数字</h2>
+<canvas id="result" width="336" height="336" aria-label="模型补全结果"></canvas>
+<div class="hint" id="difference">输入变化后会自动生成</div>
+<div class="bar"><button id="random">换一种补全</button><button id="save">保存输入与输出</button></div>
+<div class="hint">已知区域会精确保留。补全模式会根据这些区域预测剩下的笔画。</div></section>
+</div>
+<p id="status" role="status">正在加载…</p>
+<p class="hint">模型训练数据是 MNIST 数字。自己的草图、照片或极端涂改可能偏离训练数据；不会生成任意物体。上传图片只在本页读取，再把 28×28 像素送给当前模型。</p>
+</main>
+<script>
+const $=id=>document.getElementById(id), n=__SIDE__;
+let noise=[],known=Array(n*n).fill(0),mask=Array(n*n).fill(0),initial=null;
+let output=null,previous=null,brush='light',drawing=false,last=null;
+let revision=0,pending=false,busy=false,timer=null;
+for(let c=0;c<10;c++)$('digit').add(new Option(c,c));$('digit').value='3';
+function seeded(seed){let state=seed>>>0;return()=>{state=(state+0x6D2B79F5)>>>0;let a=state;a=Math.imul(a^(a>>>15),a|1);a^=a+Math.imul(a^(a>>>7),a|61);return((a^(a>>>14))>>>0)/4294967296}}
+function newNoise(){let rand=seeded(Number($('seed').value));noise=Array.from({length:n*n},()=>Math.sqrt(-2*Math.log(1-rand()))*Math.cos(2*Math.PI*rand()))}
+function draw(id,values,isNoise=false){const canvas=$(id),ctx=canvas.getContext('2d'),cell=canvas.width/n;
+ for(let i=0;i<values.length;i++){let g=id==='input'&&$('mode').value==='completion'&&!mask[i]?94:
+ Math.round((Math.max(-1,Math.min(1,values[i]/(isNoise?2:1)))+1)*127.5);
+ ctx.fillStyle=`rgb(${g},${g},${g})`;ctx.fillRect(i%n*cell,Math.floor(i/n)*cell,cell,cell)}}
+function redraw(){draw('input',$('mode').value==='noise'?noise:known,$('mode').value==='noise');
+ $('coverage').textContent=`已知区域：${(100*mask.reduce((a,b)=>a+b,0)/(n*n)).toFixed(1)}%`;}
+function remember(){initial={known:known.slice(),mask:mask.slice(),noise:noise.slice()}}
+function settings(){return{noise:noise.slice(),known:known.slice(),mask:$('mode').value==='completion'?mask.slice():Array(n*n).fill(0),
+ digit:+$('digit').value,steps:+$('steps').value,cfg:+$('cfg').value,mode:$('mode').value,seed:Number($('seed').value)}}
+function schedule(){revision++;pending=true;clearTimeout(timer);timer=setTimeout(run,100)}
+async function run(){if(busy||!pending)return;busy=true;pending=false;const current=revision;
+ try{$('status').textContent='正在根据输入生成…';const response=await fetch('generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(settings())});
+ const data=await response.json();if(!response.ok)throw Error(data.error||'生成失败');
+ if(current===revision){output=data.samples;draw('result',output);const delta=previous?Math.sqrt(output.reduce((a,v,i)=>a+(v-previous[i])**2,0)/output.length):0;
+ $('difference').textContent=`输出变化 RMS：${delta.toFixed(4)} · 已知像素误差：${data.known_max_error.toFixed(6)}`;
+ previous=output.slice();$('status').textContent=`已更新 · ${Math.round(data.seconds*1000)} ms`;
+ }}catch(e){$('status').textContent='生成失败：'+e.message}finally{busy=false;if(pending)run()}}
+function point(e){const r=$('input').getBoundingClientRect();return[(e.clientX-r.left)*n/r.width,(e.clientY-r.top)*n/r.height]}
+function stamp(p){const radius=+$('radius').value;
+ for(let y=0;y<n;y++)for(let x=0;x<n;x++){const d=Math.hypot(x+.5-p[0],y+.5-p[1]);if(d>radius)continue;const i=y*n+x;
+ if($('mode').value==='noise'){noise[i]=brush==='erase'?initial.noise[i]:Math.max(-4,Math.min(4,noise[i]+(brush==='light'?1:-1)*.4*(1-d/radius)))}
+ else if(brush==='erase'){mask[i]=0;known[i]=0}else{mask[i]=1;known[i]=brush==='light'?1:-1}}}
+$('input').addEventListener('pointerdown',e=>{drawing=true;last=point(e);$('input').setPointerCapture(e.pointerId);stamp(last);redraw();schedule()});
+$('input').addEventListener('pointermove',e=>{if(!drawing)return;const p=point(e),k=Math.max(1,Math.ceil(Math.hypot(p[0]-last[0],p[1]-last[1])*3));
+ for(let i=1;i<=k;i++)stamp([last[0]+(p[0]-last[0])*i/k,last[1]+(p[1]-last[1])*i/k]);last=p;redraw();schedule()});
+for(const event of ['pointerup','pointercancel'])$('input').addEventListener(event,()=>{drawing=false;last=null});
+for(const id of ['light','dark','erase'])$(id).onclick=()=>{brush=id;for(const b of ['light','dark','erase'])$(b).classList.toggle('active',b===id)};
+for(const id of ['digit','steps','cfg'])$(id).addEventListener('input',()=>{$('cfgv').value=$('cfg').value;schedule()});
+$('seed').onchange=()=>{newNoise();redraw();schedule()};
+$('mode').onchange=()=>{$('input-title').textContent=$('mode').value==='noise'?'输入 · 可编辑初始噪声':'输入 · 已知笔画与生成区域';redraw();schedule()};
+$('reset').onclick=()=>{known=initial.known.slice();mask=initial.mask.slice();noise=initial.noise.slice();redraw();schedule()};
+$('clear').onclick=()=>{known.fill(0);mask.fill(0);redraw();schedule()};
+$('random').onclick=()=>{$('seed').value=(Number($('seed').value)+1)%2147483647;newNoise();redraw();schedule()};
+async function example(){try{const r=await fetch('example?digit='+$('digit').value),data=await r.json();if(!r.ok)throw Error(data.error);
+ known=data.image;mask=known.map((_,i)=>i%n<n/2?1:0);$('mode').value='completion';remember();redraw();schedule()
+ }catch(e){$('status').textContent=e.message}}
+$('example').onclick=example;
+$('upload').onclick=()=>$('file').click();
+$('file').onchange=async()=>{const file=$('file').files[0];if(!file)return;const bitmap=await createImageBitmap(file);
+ const c=document.createElement('canvas');c.width=n;c.height=n;const ctx=c.getContext('2d');ctx.fillStyle='white';ctx.fillRect(0,0,n,n);
+ ctx.drawImage(bitmap,0,0,n,n);bitmap.close();const data=ctx.getImageData(0,0,n,n).data;
+ let grayscale=Array.from({length:n*n},(_,i)=>.299*data[4*i]+.587*data[4*i+1]+.114*data[4*i+2]);
+ const invert=grayscale.reduce((a,b)=>a+b,0)/grayscale.length>127;
+ known=grayscale.map(v=>(invert?255-v:v)/127.5-1);mask=known.map((_,i)=>i%n<n/2?1:0);
+ $('mode').value='completion';remember();redraw();schedule();$('file').value=''};
+$('save').onclick=async()=>{if(busy||pending||!output){$('status').textContent='请等生成完成再保存';return}
+ try{const r=await fetch('save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(settings())});
+ const data=await r.json();if(!r.ok)throw Error(data.error);$('status').textContent='已保存：'+data.path}catch(e){$('status').textContent=e.message}};
+newNoise();remember();example();
+</script>
+</body></html>

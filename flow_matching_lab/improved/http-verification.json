@@ -1,0 +1,12 @@
+{
+  "run": "unet_seed2026",
+  "page_and_example_served": true,
+  "deterministic_repeat": true,
+  "known_max_error": 0.0,
+  "changed_observation_unknown_rms": 0.39402801226128514,
+  "changed_noise_unknown_rms": 0.3547830623778259,
+  "fully_observed_image_exact": true,
+  "invalid_requests_rejected": 6,
+  "save_round_trip": true,
+  "scope": "Trained inference and HTTP API; does not verify browser pointer/upload behavior."
+}
