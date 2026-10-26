@@ -18,38 +18,38 @@ Flow Matching（FM）学习一个随时间变化的速度场，将简单分布�
 
 ### 生成模型表示什么
 
-设 \(x_0\sim p_0\)，通常取标准高斯噪声。定义：
+设 $x_0\sim p_0$，通常取标准高斯噪声。定义：
 
-\[
+$$
 \frac{d x_t}{dt}=v_\theta(x_t,t,c),\qquad t\in[0,1].
-\]
+$$
 
-这里 \(c\) 可以是类别、文本或语音条件；本实验取数字类别。模型输入是当前状态、时间与条件，输出与状态同形状的速度。对一个噪声样本积分至 \(t=1\)，得到生成样本；全部噪声样本经过这张流映射形成生成分布。[cite:1][cite:4]
+这里 $c$ 可以是类别、文本或语音条件；本实验取数字类别。模型输入是当前状态、时间与条件，输出与状态同形状的速度。对一个噪声样本积分至 $t=1$，得到生成样本；全部噪声样本经过这张流映射形成生成分布。[cite:1][cite:4]
 
 速度场驱动的密度满足连续性方程：
 
-\[
+$$
 \partial_t p_t(x)+\nabla\cdot[p_t(x)u_t(x)]=0.
-\]
+$$
 
-FM 的任务是学习产生目标概率路径 \(p_t\) 的速度场 \(u_t\)。这是一种训练目标与路径构造方法，网络可以使用 MLP、U-Net 或 Transformer；FM 本身不指定网络架构。[cite:1][cite:4][cite:7]
+FM 的任务是学习产生目标概率路径 $p_t$ 的速度场 $u_t$。这是一种训练目标与路径构造方法，网络可以使用 MLP、U-Net 或 Transformer；FM 本身不指定网络架构。[cite:1][cite:4][cite:7]
 
 ### 最小线性路径
 
-从数据中抽取 \(x_1\)，独立生成 \(x_0\)，再抽取 \(t\sim U(0,1)\)：
+从数据中抽取 $x_1$，独立生成 $x_0$，再抽取 $t\sim U(0,1)$：
 
-\[
+$$
 x_t=(1-t)x_0+t x_1,\qquad \dot x_t=x_1-x_0.
-\]
+$$
 
 因此监督信号可以直接计算，无需先运行生成模型。损失为：
 
-\[
+$$
 \mathcal L_{\mathrm{CFM}}(\theta)=
 \mathbb E\big[\|v_\theta(x_t,t,c)-(x_1-x_0)\|^2\big].
-\]
+$$
 
-本实验按 batch 与像素求平均 MSE。Meta 官方 `CondOTProbPath` 使用 \(\alpha_t=t\)、\(\sigma_t=1-t\)，与此构造完全一致。[cite:2][cite:5]
+本实验按 batch 与像素求平均 MSE。Meta 官方 `CondOTProbPath` 使用 $\alpha_t=t$、$\sigma_t=1-t$，与此构造完全一致。[cite:2][cite:5]
 
 训练的核心是以下几行：
 
@@ -68,9 +68,9 @@ optimizer.step()
 
 多条训练直线可能经过相同的中间位置，却有不同速度。均方误差回归的最优预测是条件期望：
 
-\[
+$$
 u_t(x,c)=\mathbb E[x_1-x_0\mid x_t=x,c].
-\]
+$$
 
 将每对端点的简单路径边缘化后，得到希望拟合的中间分布；上述条件期望速度场满足该边缘路径的连续性方程。原论文证明，在相应正则性假设下，CFM 与无法直接计算的边缘 FM 损失仅相差一个不依赖模型参数的常数，因此梯度相同。[cite:1][cite:3]
 
@@ -90,7 +90,7 @@ u_t(x,c)=\mathbb E[x_1-x_0\mid x_t=x,c].
 
 ### FM 与 diffusion
 
-FM 可以直接指定 \(x_t=\alpha_t x_1+\sigma_t x_0\) 和导数 \(\dot x_t\)，包含多种 diffusion 概率路径作为特例。Diffusion 中的 score、noise、clean sample 与速度表示，在合适路径下可以相互转换；不能仅凭变量叫 `noise_pred` 判断模型预测的量。[cite:1][cite:4][cite:5]
+FM 可以直接指定 $x_t=\alpha_t x_1+\sigma_t x_0$ 和导数 $\dot x_t$，包含多种 diffusion 概率路径作为特例。Diffusion 中的 score、noise、clean sample 与速度表示，在合适路径下可以相互转换；不能仅凭变量叫 `noise_pred` 判断模型预测的量。[cite:1][cite:4][cite:5]
 
 常见 diffusion 代码把时间定义为数据到噪声，而本报告定义为噪声到数据。比较训练公式和 scheduler 时必须同时核对时间方向、参数化和更新符号。Diffusion 也可以通过 probability flow ODE 或 DDIM 进行确定性采样，所以“FM 用 ODE、diffusion 只能用随机 SDE”是不正确的区分。[cite:2][cite:4]
 
@@ -98,19 +98,19 @@ FM 可以直接指定 \(x_t=\alpha_t x_1+\sigma_t x_0\) 和导数 \(\dot x_t\)�
 
 基本 Rectified Flow 的线性速度回归，与这里独立配对的线性 CFM 在相同约定下使用相同形式的目标。Rectified Flow 更强调 reflow：用已有流得到新的噪声与输出配对，再训练下一轮流；这些配对与最初独立抽样不同。[cite:2][cite:3]
 
-条件 OT 到一个数据点的直线路径，并不意味着两种完整分布之间的耦合最优。独立配对 \(p_0(x_0)p_1(x_1)\) 与最优传输计划 \(\pi(x_0,x_1)\) 必须区分；minibatch OT 则是全局 OT 的有限批近似。TorchCFM 文档明确区分 `TargetConditionalFlowMatcher` 与 `ExactOptimalTransportConditionalFlowMatcher`。[cite:3][cite:6]
+条件 OT 到一个数据点的直线路径，并不意味着两种完整分布之间的耦合最优。独立配对 $p_0(x_0)p_1(x_1)$ 与最优传输计划 $\pi(x_0,x_1)$ 必须区分；minibatch OT 则是全局 OT 的有限批近似。TorchCFM 文档明确区分 `TargetConditionalFlowMatcher` 与 `ExactOptimalTransportConditionalFlowMatcher`。[cite:3][cite:6]
 
 ### 直线监督不自动得到一步生成
 
 若学到的实际轨迹是直线且速度沿轨迹不变，Euler 一步就能完成精确位移。但普通独立配对训练不保证这种条件。少步生成可以依赖 reflow、蒸馏、网络能力与具体数据分布，本次没有实现这些改进。[cite:2]
 
-在 \(t=0\) 且端点独立时：
+在 $t=0$ 且端点独立时：
 
-\[
+$$
 u_0(x_0,c)=\mathbb E[x_1\mid c]-x_0.
-\]
+$$
 
-理想的一步 Euler 输出是 \(x_0+u_0(x_0,c)=\mathbb E[x_1\mid c]\)，即类别均值。这给出本实验“一步类别一致率高但类内方差低”的理论解释。有限网络只近似这一极限，实测结果不能替代对更复杂数据和训练方法的验证。
+理想的一步 Euler 输出是 $x_0+u_0(x_0,c)=\mathbb E[x_1\mid c]$，即类别均值。这给出本实验“一步类别一致率高但类内方差低”的理论解释。有限网络只近似这一极限，实测结果不能替代对更复杂数据和训练方法的验证。
 
 ## 实验设计与可复现条件
 
@@ -179,9 +179,9 @@ Heun 8 NFE 在这组三种训练种子中取得较低的 Sliced W1，方差比�
 
 本实现使用：
 
-\[
+$$
 v_{\mathrm{CFG}}=v_{\mathrm{null}}+s(v_{\mathrm{cond}}-v_{\mathrm{null}}).
-\]
+$$
 
 `scale=1` 只计算条件分支；`scale=0` 输出无条件速度；`scale=2` 加强类别条件。当前实现对 scale 0 和 2 都拼接两分支计算，因此 32 次 guided RHS 调用各对应每样本 64 次网络分支评估。Scale 0 可以专门优化为只计算无条件分支，本次保留统一实现并明确记账。
 

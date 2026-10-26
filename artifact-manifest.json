@@ -287,8 +287,8 @@
     },
     {
       "path": "flow_matching_lab/improved/results-friendly.md",
-      "bytes": 6825,
-      "sha256": "5de2b1b87db2fb43e9244e8a081e2c66d38c8357877c07fb779ad7ddf9b6119c"
+      "bytes": 6826,
+      "sha256": "c6b5102f3aa87ec738c7624c07406aa26c9be1db7dc9b5b335166053587089eb"
     },
     {
       "path": "flow_matching_lab/improved/results.md",
@@ -402,13 +402,13 @@
     },
     {
       "path": "flow_matching_lab/research-report-friendly.md",
-      "bytes": 9668,
-      "sha256": "62af8d4a092fe2dd365b03c96403ad9e4b649f6e792d311450d64e9ebbc52046"
+      "bytes": 9812,
+      "sha256": "3e934bfc08d0b94a8c30841d672124db298efa190e131eb453e2ede409fcd03c"
     },
     {
       "path": "flow_matching_lab/research-report.md",
-      "bytes": 19915,
-      "sha256": "e2f24b805085b2ac3b93ee85af23cdd5998007efda8a3d9fec5f2fa191d69c6b"
+      "bytes": 19883,
+      "sha256": "b6ab5302c8ae3fb1ee69bc9cbafa4111769ddea37ea07e7417f747f24196febb"
     },
     {
       "path": "flow_matching_lab/results-summary-friendly.md",
