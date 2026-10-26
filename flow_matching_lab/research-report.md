@@ -1,6 +1,6 @@
 # Flow Matching 调研与 MNIST 复现
 
-第一次阅读建议从 [直觉与公式解读](research-report-friendly.md) 开始。本篇保留原始 14×14 实验的完整技术记录；28×28 升级已经完成，见 [升级实验解读](improved/results-friendly.md)。下文末尾将 U-Net 列为后续方向，是原始实验阶段的记录，不代表当前仍未实现。
+第一次阅读建议从 [一步步认识 Flow Matching](research-report-friendly.md) 开始。本篇保留原始 14×14 实验的完整技术记录；28×28 升级已经完成，见 [升级实验解读](improved/results-friendly.md)。下文末尾将 U-Net 列为后续方向，是原始实验阶段的记录，不代表当前仍未实现。
 
 调研与实验日期：2026-10-22。研究范围为连续 Flow Matching、Conditional Flow Matching、Rectified Flow、最优传输与现有生成模型的关系；实际复现使用真实 MNIST、独立 PyTorch 实现和 CPU。论文理论与代码说明引用一手来源，实验数值来自本目录保存的运行记录。
 

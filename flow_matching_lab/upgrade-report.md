@@ -80,6 +80,6 @@ U-Net 有 236,545 个参数，加宽 MLP 有 9,674,256 个，约为前者的 40.
 
 ## 技术与数据入口
 
-`image_model.py` 实现图像条件网络和已知区域约束；`image_train.py` 负责训练和恢复；`image_eval.py` 评估；`draw.py` 与 `editor.html` 是交互服务。更完整的原理见 [从直觉到公式](research-report-friendly.md)。
+`image_model.py` 实现图像条件网络和已知区域约束；`image_train.py` 负责训练和恢复；`image_eval.py` 评估；`draw.py` 与 `editor.html` 是交互服务。更完整的原理见 [一步步认识 Flow Matching](research-report-friendly.md)。
 
 方法来源：[Flow Matching](https://arxiv.org/abs/2210.02747)、[官方 Guide 与代码](https://arxiv.org/abs/2412.06264)、[OT-CFM](https://arxiv.org/abs/2302.00482)、[高分辨率 Rectified Flow Transformer](https://arxiv.org/abs/2403.03206)。这些是后续方向的资料，本项目没有复现其中的大型系统。

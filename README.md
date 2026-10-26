@@ -29,7 +29,7 @@ python -m flow_matching_lab.draw
 | 问题 | 文档 |
 |---|---|
 | 参数怎么调，怎样保存或自己训练？ | [使用说明](flow_matching_lab/README.md) |
-| 为什么随机噪声能变成数字？ | [直觉与公式](flow_matching_lab/research-report-friendly.md) |
+| 为什么随机噪声能变成数字？ | [一步步认识 Flow Matching](flow_matching_lab/research-report-friendly.md) |
 | 新版是否真的改善，89.35% 和 25% 是什么？ | [新版实验解读](flow_matching_lab/improved/results-friendly.md) |
 | 原始版为何一步分数高，却缺少不同写法？ | [原始实验解读](flow_matching_lab/results-summary-friendly.md) |
 | 是玩具、大作业还是 SOTA？再往上做难在哪里？ | [项目水平与下一步](flow_matching_lab/upgrade-report.md) |

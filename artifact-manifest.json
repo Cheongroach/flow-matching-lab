@@ -22,8 +22,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4416,
-      "sha256": "1255407ebea23eda7793cb1b95551793ccae06fa673d242c630270f9e5bce65d"
+      "bytes": 4430,
+      "sha256": "6f99652e66d3e87b5793de6135603bf7d61d766919b2081c973d9ae81677b9dd"
     },
     {
       "path": "environment.json",
@@ -32,8 +32,8 @@
     },
     {
       "path": "flow_matching_lab/README.md",
-      "bytes": 9522,
-      "sha256": "abeab1e757ba1435561e16f7d606e8074e4d417e7a580dd04883675d5b2eda98"
+      "bytes": 9533,
+      "sha256": "d006bbb80cb794d33fde5cbbf7f812158d64031a819f7eac79459c0d889e2df8"
     },
     {
       "path": "flow_matching_lab/__init__.py",
@@ -402,13 +402,13 @@
     },
     {
       "path": "flow_matching_lab/research-report-friendly.md",
-      "bytes": 9812,
-      "sha256": "3e934bfc08d0b94a8c30841d672124db298efa190e131eb453e2ede409fcd03c"
+      "bytes": 35553,
+      "sha256": "2d33ec93c467f3980295fca2474e162e5dd9300d2acca1ba00df9bf2b66b37a4"
     },
     {
       "path": "flow_matching_lab/research-report.md",
-      "bytes": 19883,
-      "sha256": "b6ab5302c8ae3fb1ee69bc9cbafa4111769ddea37ea07e7417f747f24196febb"
+      "bytes": 19891,
+      "sha256": "322797e9f79fe39a571ab0aa2fa413771af7fe415a1b22b031bc6841f76788f4"
     },
     {
       "path": "flow_matching_lab/results-summary-friendly.md",
@@ -612,8 +612,8 @@
     },
     {
       "path": "flow_matching_lab/upgrade-report.md",
-      "bytes": 7659,
-      "sha256": "8b3eeb8056e124531a27bac71885cff80a25038ed67c98c8066257a821257046"
+      "bytes": 7670,
+      "sha256": "762e9b531f80b3d4c00b47d6901e57bb39765d7b92d3a7eeff808f7ec36e4e2c"
     },
     {
       "path": "flow_matching_lab/verification.json",

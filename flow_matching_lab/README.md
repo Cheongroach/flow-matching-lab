@@ -53,7 +53,7 @@ CFG 是 classifier-free guidance 的缩写。这里只需要把它当作“类�
 
 | 你想弄清什么 | 阅读位置 |
 |---|---|
-| 为什么随机噪声能变成数字？训练时有没有答案？ | [从直觉到公式](research-report-friendly.md) |
+| 为什么随机噪声能变成数字？训练时有没有答案？ | [一步步认识 Flow Matching](research-report-friendly.md) |
 | 升级版到底有没有改善？89.35% 和 25% 是什么意思？ | [28×28 实验解读](improved/results-friendly.md) |
 | 原始版本为什么一步分数很高，却不一定更好？ | [14×14 实验解读](results-summary-friendly.md) |
 | 这个项目是什么水平？再往上做难在哪？ | [项目水平与下一步](upgrade-report.md) |
