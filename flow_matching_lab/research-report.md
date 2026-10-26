@@ -1,5 +1,7 @@
 # Flow Matching 调研与 MNIST 复现
 
+第一次阅读建议从 [直觉与公式解读](research-report-friendly.md) 开始。本篇保留原始 14×14 实验的完整技术记录；28×28 升级已经完成，见 [升级实验解读](improved/results-friendly.md)。下文末尾将 U-Net 列为后续方向，是原始实验阶段的记录，不代表当前仍未实现。
+
 调研与实验日期：2026-10-22。研究范围为连续 Flow Matching、Conditional Flow Matching、Rectified Flow、最优传输与现有生成模型的关系；实际复现使用真实 MNIST、独立 PyTorch 实现和 CPU。论文理论与代码说明引用一手来源，实验数值来自本目录保存的运行记录。
 
 ## 方法与复现结论
@@ -211,7 +213,9 @@ CFG scale 2 的类别一致率较高，但 Sliced W1 比普通条件 Euler 64 NF
 
 建议阅读顺序：`core.py:13–17` 的路径构造，`train.py` 的随机抽样与 MSE，`core.py:77–101` 的积分，再阅读条件丢弃、CFG 和 EMA。总训练目标很短，最容易犯错的是时间、速度符号、条件处理和评估口径。
 
-### 与当前 vllm-omni 仓库的对应关系
+### 与 vllm-omni 仓库的对应关系（原始静态阅读记录）
+
+这些路径属于外部 vllm-omni 工作区，不包含在独立的 flow-matching-lab 仓库内。行号是原始阅读时的位置，后续代码可能变化，查找时以函数名为准。
 
 | 文件 | 代码位置 | 对应概念 |
 |---|---|---|

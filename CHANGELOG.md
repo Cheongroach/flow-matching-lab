@@ -1,13 +1,13 @@
-# Changelog
+# 更新记录
+
+## 文档整理 — 2026-10-26
+
+使用说明先讲用途和操作，再讲训练。新增原理、原始实验和升级实验的 `-friendly` 解读，保留完整技术报告与自动数据表。实际生成图增加中文标注，实验数值、模型和生成算法没有修改。
 
 ## v0.2.0 — 2026-10-25
 
-- Add full-resolution 28×28 image-conditioned U-Net and matched-data MLP controls.
-- Train two U-Net seeds, two MLP256 seeds and one wider MLP1024 control for 3,000 updates each.
-- Support editable observed pixels, binary masks, exact observation projection, image upload and noise editing.
-- Publish generation, diversity, local CNN feature metrics, held-out half-image completion and paste baselines.
-- Add reproducible checkpoint recovery, actual HTTP inference checks and CPU CI.
-- Preserve the original three-seed 14×14 experiments, generated arrays and research report.
-- Distribute verified models and raw arrays as release assets.
+增加完整 28×28 图像条件网络，让模型接收已知笔画并补全其他区域。交互支持白笔、黑笔、擦除已知约束、图片上传、噪声编辑和保存。
 
-Browser pointer/upload automation remains unverified: Chromium exited during page navigation in the experiment environment. CPU inference and HTTP checks completed.
+新增两次 U-Net 训练、两次 MLP256 训练和一次加宽 MLP1024 对照，各更新 3,000 次。评估同时报告数字类别、样本变化、分布距离和测试半图补全；失败对照也保留。完整模型和生成数组通过 Release 提供，并附校验。
+
+原始三次 14×14 实验、理论和实际生成动画仍保留。增加恢复训练、HTTP 推理检查及 CPU CI。浏览器在实验环境打开页面时退出，浏览器操作自动化未通过。
